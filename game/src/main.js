@@ -8,7 +8,7 @@
 // window.__shotReady for a screenshot.
 import { BEST_KEY, STEP } from './config.js';
 import { createRandom } from './random.js';
-import { createWorld, EVENT_GOLD, EVENT_HEART, EVENT_HIT, EVENT_OVER, EVENT_PARCEL, EVENT_WIN } from './world.js';
+import { createWorld, EVENT_GOLD, EVENT_HEART, EVENT_HIT, EVENT_LEVELUP, EVENT_NEAR, EVENT_OVER, EVENT_PARCEL, EVENT_SHIELD, EVENT_SHIELD_BLOCK, EVENT_WIN } from './world.js';
 import { ACTION_CONFIRM, ACTION_PAUSE, createInput } from './input.js';
 import { createAudio } from './audio.js';
 import { createRenderer, SCREEN_OVER, SCREEN_PAUSED, SCREEN_PLAY, SCREEN_TITLE, SCREEN_WIN } from './render.js';
@@ -111,11 +111,33 @@ function runGame() {
     }
     const direction = input.direction(world.state.boat.x + world.state.boat.width / 2);
     const events = world.step(STEP, direction, false);
-    if (events & EVENT_PARCEL) audio.pickup();
-    if (events & EVENT_GOLD) audio.gold();
+    const boat = world.state.boat;
+    const centreX = boat.x + boat.width / 2;
+    if (events & EVENT_PARCEL) {
+      audio.pickup(world.state.combo);
+      renderer.burst(centreX, boat.y, '#ffd94d', 10);
+    }
+    if (events & EVENT_GOLD) {
+      audio.gold();
+      renderer.burst(centreX, boat.y, '#f2c94c', 18);
+    }
     if (events & EVENT_HEART) audio.heart();
+    if (events & EVENT_SHIELD) audio.shield();
+    if (events & EVENT_NEAR) audio.near();
+    if (events & EVENT_LEVELUP) {
+      audio.levelup();
+      renderer.banner(`Level ${world.state.level} — the river quickens!`);
+    }
+    if (events & EVENT_SHIELD_BLOCK) {
+      audio.shieldBreak();
+      renderer.shake(4);
+      renderer.burst(centreX, boat.y + boat.height / 2, '#7fd4ff', 16);
+      announce('Shield absorbed the hit.');
+    }
     if (events & EVENT_HIT) {
       audio.hit();
+      renderer.shake(9);
+      renderer.burst(centreX, boat.y + boat.height / 2, '#a9713f', 16);
       announce(world.state.lives === 1 ? 'Hit. 1 life left.' : `Hit. ${world.state.lives} lives left.`);
     }
     if (events & EVENT_WIN) finishRun(true);

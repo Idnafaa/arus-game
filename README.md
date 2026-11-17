@@ -4,7 +4,7 @@
 [![rank](https://make.fun/badge/best-game-01/Idnafaa/arus-game/rank.svg)](https://make.fun/bounty/best-game-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=best-game-01)
 [![reward](https://make.fun/badge/best-game-01/Idnafaa/arus-game/reward.svg)](https://make.fun/bounty/best-game-01?utm_source=github&utm_medium=readme&utm_campaign=best-game-01)
 
-ARUS — River Courier: steer a courier boat down the river, collect parcels and golden crates, dodge logs and rocks, and deliver 25 parcels to complete the route.
+ARUS — River Courier: steer a courier boat down the river, collect parcels and golden crates, dodge logs, rocks and whirlpools, grab shields, chain combos and slip past hazards for close-call bonuses, and deliver 25 parcels to complete the route. The river deepens from morning to dusk as the levels climb.
 
 ## Run it
 

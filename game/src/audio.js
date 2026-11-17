@@ -43,8 +43,10 @@ export function createAudio() {
     unlock() {
       ensure();
     },
-    pickup() {
-      tone(660, 990, 0.12, 'sine', 0.12);
+    pickup(combo = 1) {
+      // The pitch climbs with the combo, so a hot streak sounds like one.
+      const base = 660 * (1 + (combo - 1) * 0.07);
+      tone(base, base * 1.5, 0.12, 'sine', 0.12);
     },
     gold() {
       tone(880, 880, 0.1, 'triangle', 0.14);
@@ -52,6 +54,22 @@ export function createAudio() {
     },
     heart() {
       tone(520, 780, 0.18, 'sine', 0.12);
+    },
+    shield() {
+      tone(740, 740, 0.1, 'sine', 0.12);
+      tone(1108, 1108, 0.18, 'sine', 0.1, 0.08);
+    },
+    shieldBreak() {
+      tone(300, 90, 0.2, 'sawtooth', 0.12);
+      tone(990, 990, 0.12, 'sine', 0.1, 0.05);
+    },
+    near() {
+      tone(980, 320, 0.09, 'sine', 0.07);
+    },
+    levelup() {
+      tone(523, 523, 0.1, 'triangle', 0.12);
+      tone(659, 659, 0.1, 'triangle', 0.12, 0.09);
+      tone(784, 784, 0.16, 'triangle', 0.12, 0.18);
     },
     hit() {
       tone(180, 60, 0.25, 'sawtooth', 0.16);

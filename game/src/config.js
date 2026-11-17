@@ -66,11 +66,36 @@ export const HEART = {
   interval: 14,
 };
 
+/** Whirlpools appear from level 3: a swirling eddy that drags the boat sideways. Touch its core and it hits like a log. */
+export const WHIRLPOOL = {
+  size: 64,
+  speed: 150,
+  speedPerLevel: 10,
+  interval: 11,
+  pullRadius: 170,
+  pull: 130,
+};
+
+/** A shield pickup: absorbs the next hit, then breaks. */
+export const SHIELD = {
+  width: 30,
+  height: 30,
+  speed: 190,
+  interval: 18,
+};
+
+/** Points for slipping past a hazard with almost no room to spare. */
+export const NEAR_MISS = { points: 5, gap: 34 };
+
 /** Seconds of play per level, and the last level: speeds and spawn rates stop growing there. */
 export const LEVEL = { seconds: 15, max: 10 };
 
 /** How many floating things can exist at once; the pool is allocated once, at boot. */
-export const POOL_SIZE = 72;
+export const POOL_SIZE = 80;
+
+/** Floating "+10" style notes: how many can show at once, and how long each lasts. */
+export const POPUP_POOL = 10;
+export const POPUP_SECONDS = 1.1;
 
 /** A parcel streak of 4 raises the score multiplier by one, up to x5; a hit resets it. */
 export const COMBO_PER_STREAK = 4;
@@ -97,6 +122,13 @@ export const PALETTE = {
   logEnd: '#a9713f',
   rock: '#8b93a3',
   heart: '#e5534b',
+  whirlpool: '#8fe3d4',
+  whirlpoolDeep: '#0d5f63',
+  shield: '#7fd4ff',
+  shieldRing: '#bfe9ff',
+  leaf: '#4d9e5f',
+  reed: '#3f8f57',
+  spark: '#ffd94d',
   panel: '#122b33',
   text: '#eef6f3',
   muted: '#9fb8b2',
